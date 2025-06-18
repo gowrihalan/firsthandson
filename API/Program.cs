@@ -1,6 +1,7 @@
 using Core.Interfaces;
 using Infrastructure.DataAccess;
 using Infrastructure.DataAccess.SeedData;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 });
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 
 var app = builder.Build();
 
