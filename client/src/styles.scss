@@ -1,5 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@use '@angular/material' as mat;
 @import "tailwindcss";
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$customTheme:mat.define-theme();
+@include mat.core();
+
+:root{
+    @include mat.badge-overrides((
+        background-color:blue,
+    ));
+}
+.custom-theme{
+    @include mat.all-component-themes($customTheme);
+
+    //override the button
+
+    .mdc-button, .mdc-raised-button,.mdc-stroked-button,.mdc-flat-button{
+        @apply rounded-md
+    }
+}
+
